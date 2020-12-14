@@ -15,17 +15,9 @@ class BlogHome extends React.Component {
     return (
 	   <div className="main-wrapper">
         <Header />
-
-        <section className="blog-list px-3 py-5 p-md-5">
-          <div className="container">
             
-            <BlogHomeContent />
-            
-            <Pager />
-            
-          </div>
-        </section>
-        
+        <BlogHomeContent />
+                
         <BlogFooter />
 
       </div>

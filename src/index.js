@@ -4,6 +4,7 @@ import './index.css';
 import App from './Components/App';
 import Post from './Components/Post';
 import About from './Components/About';
+import Category from './Components/Category';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import reportWebVitals from './reportWebVitals';
 
@@ -13,7 +14,8 @@ ReactDOM.render(
   		<main>
             <Switch>
     			<Route path='/' component={App} exact />
-    			<Route path='/post/:id' component={Post} exact />
+          <Route path='/post/:id' component={Post} exact />
+    			<Route path='/category/:id' component={Category} exact />
     			<Route path='/about' component={About} exact />
     			<Route component={Error} />
             </Switch>

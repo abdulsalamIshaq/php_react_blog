@@ -1,4 +1,5 @@
 <?php
+
 // Allow from any origin
 if(isset($_SERVER["HTTP_ORIGIN"]))
 {
@@ -25,12 +26,15 @@ if($_SERVER["REQUEST_METHOD"] == "OPTIONS")
     //Just exit with 200 OK with the above headers for OPTIONS method
     exit(0);
 }
+
+require_once "config.php";
+
 class DB {
     private $conn;
 
     public function __construct() {
         try {
-            $this->conn = new PDO('mysql:host=localhost;dbname=icore_react_blog', 'root', '');
+            $this->conn = new PDO('mysql:host='.HOST.';dbname='.DBNAME, USERNAME, PASSWORD);
             $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch (Exception $e) {
             echo json_encode([
@@ -40,7 +44,12 @@ class DB {
     }
 
     public function get_post_with_category() {
-        $query = $this->conn->prepare('SELECT * FROM posts as p JOIN categories as c ON p.category_id = c.id ');
+        $query = $this->conn->prepare('SELECT * FROM posts as p 
+                                        JOIN users as u ON
+                                        u.id = p.user_id 
+                                        JOIN categories as c ON 
+                                        p.category_id = c.id 
+                                        ORDER BY p.created_at DESC ');
         $query->execute();
         $row = $query->fetchAll();
         
@@ -48,13 +57,20 @@ class DB {
     }
 
     public function get_single_post(int $id) {
-        $query = $this->conn->prepare('SELECT * FROM posts as p JOIN categories as c 
+        $query = $this->conn->prepare('SELECT * FROM posts as p
+                                        JOIN users as u ON
+                                        u.id = p.user_id 
+                                        JOIN categories as c 
                                         ON p.category_id = c.id WHERE p.id = :id');
         $query->bindParam(':id', $id, PDO::PARAM_INT);
         $query->execute();
         $row = $query->fetchAll();
 
-        return json_encode($row);
+        return json_encode([
+            'posts' => $row,
+            //'next' => $this->get_next($id),
+            //'prev' => $this->get_prev($id),
+        ]);
     }
 
     public function get_categories() {
@@ -62,6 +78,24 @@ class DB {
         $query->execute();
         $row = $query->fetchAll();
 
-        return json_encode($row);
+        return json_encode([
+            'categories' => $row
+        ]);
+    }
+
+    public function get_category_post(int $id) {
+        $query = $this->conn->prepare('SELECT * FROM posts as p 
+                                        JOIN users as u ON
+                                        u.id = p.user_id
+                                        JOIN categories as c 
+                                        ON c.id = p.category_id
+                                        WHERE p.category_id = :id  ORDER BY p.created_at DESC');
+        $query->bindParam(':id', $id, PDO::PARAM_INT);
+        $query->execute();
+        $row = $query->fetchAll();
+
+        return json_encode([
+            'posts' => $row
+        ]);
     }
 }

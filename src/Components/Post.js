@@ -10,7 +10,9 @@ class Post extends React.Component {
 		super(props);
 
 	    this.state = {
-	      post: []
+	      post: [],
+	      //prev: [],
+	      //next: []
 	    }
 	}
 
@@ -26,11 +28,13 @@ class Post extends React.Component {
 			},
 		})
 		.then(res => {  
-			console.log(res.data)
+			console.log(res.data.posts)
 			this.setState({
-                post: res.data,
+                post: res.data.posts,
+                //next: res.data.next[0].id,
+                //prev: res.data.prev[0].id
              })
-			//console.log(this.state.post)
+			console.log(this.state.post)
 
 		})
 		.catch(error => console.log(error));
@@ -39,9 +43,8 @@ class Post extends React.Component {
   render() {
     return (
       <div className="blog-box">
-      	<h1 className="text-center">{this.props.match.params.id}</h1>
         <SideBar/>
-        <BlogPost data={this.state.post}/>
+        <BlogPost data={this.state.post} prev={this.state.prev} next={this.state.next} />
       </div>
     );
   }

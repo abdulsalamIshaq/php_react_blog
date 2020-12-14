@@ -23,17 +23,33 @@ class SideBar extends React.Component {
 
 	              		<img className="profile-image mb-3 rounded-circle mx-auto" src="/assets/images/profile.png" alt="image" />			
               			<div className="bio mb-3">
-          					Hi, my name is Anthony Doe. Briefly introduce yourself here. You can also provide a link to the about page.
+          					Hi, my name is <b className="font-weight-bold">Abdulsalam Ishaq</b>. <br />A Fullstack Web Developer.
           					<br />
-          					<Link to="/about">Find out more about me</Link>
+          					<Link to="/about" className="font-weight-bold">Find out more about me</Link>
           				</div>{/*//bio*/}
 
 		              	<ul className="social-list list-inline py-3 mx-auto">
-			                <li className="list-inline-item"><a href="#"><i className="fab fa-twitter fa-fw" /></a></li>
-			                <li className="list-inline-item"><a href="#"><i className="fab fa-linkedin-in fa-fw" /></a></li>
-			                <li className="list-inline-item"><a href="#"><i className="fab fa-github-alt fa-fw" /></a></li>
-			                <li className="list-inline-item"><a href="#"><i className="fab fa-stack-overflow fa-fw" /></a></li>
-			                <li className="list-inline-item"><a href="#"><i className="fab fa-codepen fa-fw" /></a></li>
+			                
+			                <li className="list-inline-item">
+			                	<a href="https://github.com/kayode-suc"><i className="fab fa-github-alt fa-fw" /></a>
+			                </li>
+
+			                <li className="list-inline-item">
+			                	<a href="#"><i className="fab fa-facebook fa-fw" /></a>
+			                </li>
+			                
+			                <li className="list-inline-item">
+			                	<a href="#"><i className="fab fa-twitter fa-fw" /></a>
+			                </li>
+
+			                <li className="list-inline-item">
+			                	<a href="#"><i className="fab fa-stack-overflow fa-fw" /></a>
+			                </li>
+			                
+			                <li className="list-inline-item">
+			                	<a href="#"><i className="fab fa-codepen fa-fw" /></a>
+			                </li>			                
+
 		                </ul>{/*//social-list*/}
 
 			             <hr /> 
@@ -53,7 +69,7 @@ class SideBar extends React.Component {
 		            </ul>
 
         			<div className="my-2 my-md-3">
-          				<a className="btn btn-primary" href="https://themes.3rdwavemedia.com/" target="_blank">Get in Touch</a>
+          				<a className="btn btn-primary" href="#" target="_blank">Get in Touch</a>
         			</div>
 	            </div>
 	        </nav>

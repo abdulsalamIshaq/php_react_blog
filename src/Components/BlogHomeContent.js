@@ -2,6 +2,8 @@
 import React from 'react';
 //import logo from '../logo.svg';
 //import '../App.css';
+import SideBarRight from './SideBarRight';
+import Pager from './Pager';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
@@ -39,39 +41,52 @@ class BlogHomeContent extends React.Component {
 
 	render() {
 	    return (	    	
-			<React.Fragment>
-	    		{this.state.post.map(p => {
-		    		return (
-		    			<div key={p.id} className="item mb-5">
-		    				<div className="media">
-				            	<img className="mr-3 img-fluid post-thumb d-none d-md-flex" src="{p.image}" alt="image" />
-				            	<div className="media-body">
+			<section className="blog-list px-3 py-5 p-md-5">
+	        	<div className="container-fluid">
+	        		<div className="row">
+	        			<div className="col-sm-8">
 
-				              		<h3 className="title mb-1">
-				              			<Link to={"post/"+p.id}>{p.title}</Link>
-				              		</h3>
+				    		{this.state.post.map(p => {
+					    		return (
+					    			<div key={p.id} className="item mb-5">
+					    				<div className="media">
+							            	<img className="mr-3 img-fluid post-thumb d-none d-md-flex" src={p.image} alt="image" />
+							            	<div className="media-body">
 
-				              		<div className="meta mb-1">
-				              			<span className="date">{new Date(p.created_at).toLocaleDateString('En', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span>
-				              			<span className="time">5 min read</span>
-				              			<span className="comment">
-				              				<a href="#">8 comments</a>
-				              			</span>
-				              		</div>
+							              		<h3 className="title mb-1">
+							              			<Link to={"post/"+p.id}>{p.title}</Link>
+							              		</h3>
 
-				              		<div className="intro">
-				              			{p.body.substring(0, 190)}...
-				              		</div>
+							              		<div className="meta mb-1">
+							              			<span className="date">{new Date(p.created_at).toLocaleDateString('En', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</span>
+							              			<span className="time">
+			              								<Link to={"/category/"+p.category_id}>{p.name}</Link>
+							              			</span>
+							              			<span className="comment">
+							              				By <a href="#">{p.username}</a>
+							              			</span>
+							              		</div>
 
-				              		<Link to={"post/"+p.id}>Read more →</Link>
-				            	</div>{/*//media-body*/}
-				          	</div>
-			        	</div>
+							              		<div className="intro">
+							              			{p.body.substring(0, 150)}...
+							              		</div>
 
-		          	);
-	    	})}
-			</React.Fragment>
+							              		<Link to={"post/"+p.id}>Read more →</Link>
+							            	</div>{/*//media-body*/}
+							          	</div>
+						        	</div>
+					          	);
+				    		})}
 
+        					<Pager />
+
+				    	</div>
+
+			          	<SideBarRight />
+
+			        </div>
+		    	</div>
+			</section>
     	);
     }
 }

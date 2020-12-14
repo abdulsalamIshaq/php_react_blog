@@ -1,10 +1,15 @@
-# Getting Started with Create React App
+# How To Use
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Before running this blog you have to have the following installed
 
-## Available Scripts
+1. PHP web Server (eg. Xampp, Nginx, ect)
+2. Node
 
-In the project directory, you can run:
+### Configuring Database
+Go to `api/classes/config.php` to configure the database settings. 
+
+### Importing Database
+import the file located at `/api` to your db
 
 ### `npm start`
 

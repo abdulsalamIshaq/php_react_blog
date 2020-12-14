@@ -24,7 +24,7 @@ class BlogPost extends React.Component {
                 </React.Fragment>
               );
             })}
-            <Pager />
+            {/*//<Pager next={this.props.next} prev={this.props.prev}/>*/}
             <div className="blog-comments-section">
               <div id="disqus_thread" />
               <noscript>
@@ -36,15 +36,6 @@ class BlogPost extends React.Component {
             </div>{/*//blog-comments-section*/}
           </div>{/*//container*/}
         </article>
-        <section className="promo-section theme-bg-light py-5 text-center">
-          <div className="container">
-            <h2 className="title">Promo Section Heading</h2>
-            <p>You can use this section to promote your side projects etc. Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. </p>
-            <figure className="promo-figure">
-              <a href="https://made4dev.com" target="_blank"><img className="img-fluid" src="assets/images/promo-banner.jpg" alt="image" /></a>
-            </figure>
-          </div>{/*//container*/}
-        </section>{/*//promo-section*/}
         <BlogFooter />
       </div>
     );
